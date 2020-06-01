@@ -116,6 +116,7 @@ def register():
     password = bcrypt.generate_password_hash(request.get_json()['password']).decode('utf-8')
     creation_time = datetime.utcnow()
     existing_skills = request.get_json()['existing_skills']
+    desired_skills = request.get_json()['desired_skills']
 
     student_id = students.insert({
         'first_name': first_name,
@@ -124,6 +125,7 @@ def register():
         'password': password,
         'creation_time': creation_time,
         'existing_skills': existing_skills,
+        'desired_skills': desired_skills,
     })
 
     new_student = students.find_one({'_id': student_id})
